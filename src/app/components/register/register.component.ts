@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit{
 
   form: FormGroup;
 
-  submitted: boolean = true;
+  submitted: boolean = false;
 
   data: any;
 

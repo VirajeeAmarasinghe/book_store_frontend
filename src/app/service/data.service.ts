@@ -1,19 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient) {     
+
+  }  
 
   getData() {
     return this.httpClient.get('http://localhost:8000/api/book');
   }
 
   insertData(data:any){
-    return this.httpClient.post('http://localhost:8000/api/book', data);
+    const headers = new HttpHeaders();
+    return this.httpClient.post('http://localhost:8000/api/book', data, {
+      headers: headers
+    });
   }
 
   deleteData(id:any) {

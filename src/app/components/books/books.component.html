@@ -1,12 +1,26 @@
-<form (ngSubmit)="insertBookData()">
+<form (ngSubmit)="insertBookData()" [formGroup]="form">
     <div class="form-group">
         <label for="name">Name</label>
-        <input type="text" name="name" class="form-control" [(ngModel)]="book.name">
+        <input type="text" formControlName="name" name="name" class="form-control" [(ngModel)]="book.name" [ngClass]="{'is-invalid' : submitted && f['name'].errors}">
+        <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">
+            <div *ngIf="f['name'].errors['required']">Name is required</div>            
+        </div>
     </div>
 
     <div class="form-group">
         <label for="isbn">ISBN</label>
-        <input type="text" name="isbn" class="form-control" [(ngModel)]="book.isbn">
+        <input type="text" formControlName="isbn" name="isbn" class="form-control" [(ngModel)]="book.isbn" [ngClass]="{'is-invalid' : submitted && f['isbn'].errors}">
+        <div *ngIf="submitted && f['isbn'].errors" class="invalid-feedback">
+            <div *ngIf="f['isbn'].errors['required']">ISBN is required</div>            
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="cover_image">Cover Image</label>
+        <input type="file" formControlName="cover_image" name="cover_image" class="form-control" [(ngModel)]="book.cover_image" (change)="uploadImage($event)" [ngClass]="{'is-invalid' : submitted && f['cover_image'].errors}">
+        <div *ngIf="submitted && f['cover_image'].errors" class="invalid-feedback">
+            <div *ngIf="f['cover_image'].errors['required']">Image is required</div>            
+        </div>
     </div>
 
     <button class="btn btn-dark btn-sm mt-4">Submit</button>

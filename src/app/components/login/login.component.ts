@@ -15,7 +15,7 @@ export class LoginComponent {
 
   form: FormGroup;
 
-  submitted: boolean = true;
+  submitted: boolean = false;
 
   data: any;
 
