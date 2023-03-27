@@ -16,10 +16,21 @@ import { HomeComponent } from './components/home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
+import { AuthGuard } from './auth.guard';
+
 const appRoutes: Routes = [
-  { path: 'books', component: BooksComponent },
-  { path: 'edit/:id', component:BookEditComponent },
-  { path: '', component:HomeComponent },
+  { path: 'books', 
+    component: BooksComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: 'edit/:id', 
+    component:BookEditComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: '', 
+    component:HomeComponent,
+    canActivate: [AuthGuard]
+  },
   { path: 'register', component:RegisterComponent },
   { path: 'login', component:LoginComponent }
 ];
@@ -41,9 +52,9 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),    
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

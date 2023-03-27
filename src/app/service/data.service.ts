@@ -37,5 +37,11 @@ export class DataService {
     return this.httpClient.post('http://localhost:8000/api/register', data);
 
   }
+
+  loginUser(data:any) {
+
+    return this.httpClient.post('http://localhost:8000/api/login', data);
+
+  }
   
 }
